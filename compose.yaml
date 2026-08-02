@@ -1,0 +1,22 @@
+name: love-story-platform
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+    ports:
+      - "${WEB_PORT:-18080}:80"
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/api.Dockerfile
+    environment:
+      AUTH_MODE: "${AUTH_MODE:-required}"
+      API_KEYS: "${API_KEYS:-}"
+      PORT: "3000"
+    ports:
+      - "${API_PORT:-3000}:3000"
+    restart: unless-stopped

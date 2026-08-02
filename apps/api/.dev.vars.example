@@ -1,0 +1,4 @@
+# Local Cloudflare Worker configuration for `wrangler dev` only.
+# Copy this file to apps/api/.dev.vars. The Node API uses apps/api/.env instead.
+AUTH_MODE=required
+API_KEYS=lk_live_replace_with_a_long_random_value

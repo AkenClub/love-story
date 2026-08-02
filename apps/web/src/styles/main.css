@@ -1,0 +1,117 @@
+:root {
+  color-scheme: light;
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, Georgia, serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-bg: #f7efeb;
+  --color-ink: #4c2d35;
+  --color-muted: #856e73;
+  --color-muted-light: #a99498;
+  --color-accent: #a94f5e;
+  --color-accent-hover: #944250;
+  --color-accent-soft: #ce8993;
+  --color-accent-wash: rgb(169 79 94 / 8%);
+  --color-accent-shadow: rgb(129 50 66 / 22%);
+  --color-on-accent: #fffaf8;
+  --color-surface: rgb(255 251 248 / 78%);
+  --color-surface-soft: rgb(255 251 248 / 58%);
+  --color-line: rgb(119 72 81 / 17%);
+  --color-line-soft: rgb(119 72 81 / 10%);
+  --color-line-strong: rgb(169 79 94 / 42%);
+  --color-grid: rgb(115 78 83 / 10%);
+  --color-ring: rgb(181 112 123 / 4%);
+  --color-mote: #d8a5a8;
+  --color-mote-glow: rgb(197 120 132 / 40%);
+  --paper-light: rgb(176 120 125 / 11%);
+  --orb-one: radial-gradient(circle, rgb(224 166 169 / 58%), transparent 68%);
+  --orb-two: radial-gradient(circle, rgb(236 190 163 / 52%), transparent 68%);
+  --orb-three: radial-gradient(circle, rgb(211 167 185 / 34%), transparent 70%);
+  --orb-opacity: 0.7;
+  --shadow-small: 0 8px 28px rgb(104 67 74 / 8%);
+  --shadow-card: 0 30px 90px rgb(93 57 64 / 13%), 0 2px 8px rgb(93 57 64 / 5%);
+  background: var(--color-bg);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  transition: background-color 400ms ease;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #171216;
+  --color-ink: #f1deda;
+  --color-muted: #b99ea1;
+  --color-muted-light: #806d72;
+  --color-accent: #d77b87;
+  --color-accent-hover: #e18c97;
+  --color-accent-soft: #9f5964;
+  --color-accent-wash: rgb(215 123 135 / 10%);
+  --color-accent-shadow: rgb(214 91 109 / 18%);
+  --color-on-accent: #25161b;
+  --color-surface: rgb(42 31 37 / 78%);
+  --color-surface-soft: rgb(47 34 40 / 58%);
+  --color-line: rgb(239 198 203 / 14%);
+  --color-line-soft: rgb(239 198 203 / 8%);
+  --color-line-strong: rgb(215 123 135 / 48%);
+  --color-grid: rgb(225 177 183 / 8%);
+  --color-ring: rgb(215 123 135 / 4%);
+  --color-mote: #be7e87;
+  --color-mote-glow: rgb(215 123 135 / 32%);
+  --paper-light: rgb(229 185 191 / 7%);
+  --orb-one: radial-gradient(circle, rgb(117 50 68 / 45%), transparent 68%);
+  --orb-two: radial-gradient(circle, rgb(101 59 44 / 36%), transparent 68%);
+  --orb-three: radial-gradient(circle, rgb(104 59 91 / 30%), transparent 70%);
+  --orb-opacity: 0.8;
+  --shadow-small: 0 8px 28px rgb(0 0 0 / 16%);
+  --shadow-card: 0 34px 100px rgb(0 0 0 / 32%), 0 2px 10px rgb(0 0 0 / 18%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: var(--color-bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% 45%, transparent 0 20%, var(--color-bg) 72%),
+    var(--color-bg);
+  color: var(--color-ink);
+  transition: background-color 400ms ease, color 400ms ease;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+button:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

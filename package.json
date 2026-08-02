@@ -1,0 +1,21 @@
+{
+  "name": "love-story-platform",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "prepare:data": "node scripts/prepare-data.mjs",
+    "generate:api-key": "node scripts/generate-api-key.mjs",
+    "dev:web": "pnpm --filter @love-story/web dev",
+    "dev:api": "pnpm --filter @love-story/api dev",
+    "build": "pnpm prepare:data && pnpm -r build",
+    "build:web": "pnpm prepare:data && pnpm --filter @love-story/web build",
+    "build:api": "pnpm prepare:data && pnpm --filter @love-story/api build",
+    "test": "pnpm prepare:data && pnpm -r test",
+    "typecheck": "pnpm prepare:data && pnpm -r typecheck"
+  }
+}

@@ -159,6 +159,66 @@ Web 默认使用较少与本地开发服务及 Windows 保留端口冲突的 `18
 
 `web` 与 `api` 是相互独立的服务：只启动其中一个不会隐式启动另一个，前端也不会请求该 API。
 
+#### 使用 Docker Hub 镜像部署
+
+不需要克隆源码或在服务器上安装 Node.js。建议固定使用明确的版本号，以下示例使用 `0.1.0`。
+
+部署 API 或 Web+API 组合镜像前，先创建 `.env`：
+
+```env
+AUTH_MODE=required
+API_KEYS=lk_live_replace_with_a_long_random_value
+```
+
+`API_KEYS` 可以填写以逗号分隔的多个高熵 Key。仅在可信的内部环境中，才应使用 `AUTH_MODE=disabled` 关闭鉴权。
+
+根据需要选择一种部署方式：
+
+```bash
+# Web + API：Web 访问 http://localhost:18080，API 访问 http://localhost:3000
+docker run -d \
+  --name love-story \
+  --restart unless-stopped \
+  --env-file .env \
+  -p 18080:80 \
+  -p 3000:3000 \
+  ppken/love-story:0.1.0
+
+# 仅 Web：访问 http://localhost:18080
+docker run -d \
+  --name love-story-web \
+  --restart unless-stopped \
+  -p 18080:80 \
+  ppken/love-story:0.1.0-web
+
+# 仅 API：访问 http://localhost:3000
+docker run -d \
+  --name love-story-api \
+  --restart unless-stopped \
+  --env-file .env \
+  -p 3000:3000 \
+  ppken/love-story:0.1.0-api
+```
+
+升级时先拉取新版本镜像，再停止并删除旧容器，最后使用新版本号重新执行对应的 `docker run` 命令。镜像标签可在 [Docker Hub](https://hub.docker.com/r/ppken/love-story/tags) 查看。
+
+#### 发布到 Docker Hub
+
+发布脚本会自动读取根目录 `package.json` 中的 `version`，并在 `ppken/love-story` 下构建和推送三个标签。以版本 `0.1.0` 为例：
+
+- `ppken/love-story:0.1.0`：同一容器同时运行 Web（80）和 API（3000）
+- `ppken/love-story:0.1.0-web`：仅 Web（80）
+- `ppken/love-story:0.1.0-api`：仅 API（3000）
+
+登录 Docker Hub 后运行：
+
+```bash
+docker login
+pnpm publish:docker
+```
+
+如需发布到其他镜像仓库，可设置 `DOCKER_REPOSITORY` 后再运行发布命令。
+
 ## API
 
 ```http

@@ -15,6 +15,7 @@
     "build": "pnpm prepare:data && pnpm -r build",
     "build:web": "pnpm prepare:data && pnpm --filter @love-story/web build",
     "build:api": "pnpm prepare:data && pnpm --filter @love-story/api build",
+    "publish:docker": "node scripts/publish-docker.mjs",
     "test": "pnpm prepare:data && pnpm -r test",
     "typecheck": "pnpm prepare:data && pnpm -r typecheck"
   }
